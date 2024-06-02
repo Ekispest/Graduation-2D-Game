@@ -1,0 +1,171 @@
+[gd_scene load_steps=20 format=3 uid="uid://dbhugqcc7h2mu"]
+
+[ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_tsr8h"]
+[ext_resource type="Texture2D" uid="uid://d218aipuebtea" path="res://assets/blood.png" id="2_d1o31"]
+[ext_resource type="PackedScene" uid="uid://btg1hgds4smuo" path="res://scenes/component/random_stream_player_component.tscn" id="3_f27n0"]
+[ext_resource type="AudioStream" uid="uid://c0usk10hobiwh" path="res://sounds/footstep_carpet_000.ogg" id="4_lp3pm"]
+[ext_resource type="AudioStream" uid="uid://4y5mn6m5ff47" path="res://sounds/footstep_carpet_001.ogg" id="5_4aw6x"]
+[ext_resource type="AudioStream" uid="uid://dffeo42bajgge" path="res://sounds/footstep_carpet_002.ogg" id="6_ltgq8"]
+[ext_resource type="AudioStream" uid="uid://csppv05u2idya" path="res://sounds/footstep_carpet_003.ogg" id="7_f6o4u"]
+[ext_resource type="AudioStream" uid="uid://dwniqoborrmvi" path="res://sounds/footstep_carpet_004.ogg" id="8_uhpwv"]
+
+[sub_resource type="Animation" id="Animation_d4lyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StepBackParticle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dja10"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StepBackParticle:emitting")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodParticles:emitting")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_riuio"]
+_data = {
+"RESET": SubResource("Animation_d4lyc"),
+"default": SubResource("Animation_dja10")
+}
+
+[sub_resource type="Gradient" id="Gradient_xr5ao"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.186508, 0.388889, 0.690476)
+colors = PackedColorArray(0.359069, 0.359069, 0.359069, 1, 0.473976, 0.473976, 0.473975, 1, 0.74768, 0.74768, 0.74768, 1, 0.815389, 0.815389, 0.815389, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xk0id"]
+gradient = SubResource("Gradient_xr5ao")
+
+[sub_resource type="Curve" id="Curve_4k1dm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.276284, 1), 0.0, 0.0, 0, 0, Vector2(0.944236, 0.791165), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_l6vo8"]
+curve = SubResource("Curve_4k1dm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_21udq"]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 6.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 750.0
+damping_max = 850.0
+angle_max = 360.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_l6vo8")
+color_ramp = SubResource("GradientTexture1D_xk0id")
+
+[sub_resource type="Curve" id="Curve_gcy8v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.722396, 0.759401), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ln4ht"]
+curve = SubResource("Curve_gcy8v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggb2k"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 30.0
+gravity = Vector3(2.08165e-12, 800, 2.08165e-12)
+initial_velocity_min = 175.0
+initial_velocity_max = 250.0
+angular_velocity_min = -1440.0
+angular_velocity_max = 1440.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 2.08167e-15
+scale_curve = SubResource("CurveTexture_ln4ht")
+
+[node name="DeathComponent" type="Node2D"]
+script = ExtResource("1_tsr8h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_riuio")
+}
+
+[node name="BloodParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_21udq")
+texture = ExtResource("2_d1o31")
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+fixed_fps = 0
+interpolate = false
+
+[node name="StepBackParticle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ggb2k")
+lifetime = 0.7
+one_shot = true
+fixed_fps = 0
+interpolate = false
+
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("3_f27n0")]
+streams = Array[AudioStream]([ExtResource("4_lp3pm"), ExtResource("5_4aw6x"), ExtResource("6_ltgq8"), ExtResource("7_f6o4u"), ExtResource("8_uhpwv")])

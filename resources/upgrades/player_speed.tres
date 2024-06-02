@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://cxmt8pk1ausf3"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_dsnby"]
+
+[resource]
+script = ExtResource("1_dsnby")
+id = "pickup_area"
+max_quantity = 4
+name = "Pickup Area"
+image_path = "res://assets/abilities/player.png"
+is_evolution = false
+description = "Increases player pickup area by 10%."

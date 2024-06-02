@@ -1,0 +1,378 @@
+[gd_scene load_steps=27 format=3 uid="uid://ff082s2cpd0g"]
+
+[ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_56v20"]
+[ext_resource type="Texture2D" uid="uid://cswu8tolryu6h" path="res://scenes/game_object/player/player.png" id="1_xn5b6"]
+[ext_resource type="PackedScene" uid="uid://6a38sh7pfjp3" path="res://scenes/ability/sword_ability/sword_ability_controller.tscn" id="2_14gh0"]
+[ext_resource type="PackedScene" uid="uid://btg1hgds4smuo" path="res://scenes/component/random_stream_player_component.tscn" id="2_tumac"]
+[ext_resource type="PackedScene" uid="uid://cyynh8uv4u4wp" path="res://scenes/component/health_component.tscn" id="2_xotrb"]
+[ext_resource type="AudioStream" uid="uid://bett3opsvbbw0" path="res://sounds/impactMining_000.ogg" id="3_b577q"]
+[ext_resource type="PackedScene" uid="uid://o1entvj4ufi4" path="res://scenes/component/velocity_component.tscn" id="3_onu2v"]
+[ext_resource type="AudioStream" uid="uid://5t3h1hvdc5ji" path="res://sounds/impactMining_001.ogg" id="4_ts2fi"]
+[ext_resource type="AudioStream" uid="uid://b75to1vewr1r2" path="res://sounds/impactMining_002.ogg" id="5_c71pl"]
+[ext_resource type="AudioStream" uid="uid://boik3hx7tlrh3" path="res://sounds/impactMining_003.ogg" id="6_6trcm"]
+[ext_resource type="AudioStream" uid="uid://cb75yn3tin1ih" path="res://sounds/impactMining_004.ogg" id="7_ncnc1"]
+[ext_resource type="Texture2D" uid="uid://cjaor0sh8iqpb" path="res://assets/light.png" id="11_8pr5u"]
+[ext_resource type="Texture2D" uid="uid://j4jg25wokan6" path="res://assets/particle.png" id="13_xao2c"]
+
+[sub_resource type="Animation" id="Animation_ao8i3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Image:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Image:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.48787e-16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Image:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mwqmi"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Image:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.002602, 0.0030008, 0.501318),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.34053e-11, -7.99736), Vector2(2.34053e-11, -7.99736), Vector2(-1.88061e-11, -6.99736)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Image:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00463481, 0.502639, 0.998679),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Image:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.00301594, 0.999771),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.000919245, 0.000919245]
+}
+
+[sub_resource type="Animation" id="Animation_6n1tv"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Image:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.000906408, 0.1, 0.2, 0.411, 0.496006, 0.6, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -10), Vector2(-6.90532e-09, -11), Vector2(-2.09916e-08, -7.4079), Vector2(-1.46279e-08, -7), Vector2(8.76064e-09, -9), Vector2(6.37372e-09, -9.75057), Vector2(2.08165e-12, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Image:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.000906408, 0.1, 0.2, 0.242543, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.000919245, 0.0, -0.150939, -0.150939, -0.021522, 0.153268, 0.153268, -0.150782, -0.149525, 0.0268653, 0.102336]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Image:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.210735, 0.570542, 0.864622),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phns2"]
+_data = {
+"RESET": SubResource("Animation_ao8i3"),
+"idle": SubResource("Animation_mwqmi"),
+"walk": SubResource("Animation_6n1tv")
+}
+
+[sub_resource type="Animation" id="Animation_f80as"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterNightLight:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InnerNightLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleNightLight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l307i"]
+resource_name = "default"
+length = 600.0
+loop_mode = 1
+step = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OuterNightLight:energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 350, 600),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InnerNightLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 350, 600),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleNightLight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 350, 600),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.8, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ppnf"]
+_data = {
+"RESET": SubResource("Animation_f80as"),
+"default": SubResource("Animation_l307i")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3cc0k"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0a14d"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2muc3"]
+radius = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrf1p"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpyye"]
+bg_color = Color(0.909804, 0.270588, 0.215686, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hwboj"]
+emission_shape = 6
+emission_ring_axis = Vector3(2.08165e-12, 5, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 5.0
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 2.08165e-12)
+spread = 50.0
+gravity = Vector3(2.08165e-12, -40, 2.08165e-12)
+initial_velocity_max = 4.0
+angular_velocity_min = 2.0
+angular_velocity_max = 5.0
+orbit_velocity_min = 2.08167e-14
+orbit_velocity_max = 2.08167e-14
+damping_max = 5.0
+angle_max = 90.0
+scale_min = 0.1
+scale_max = 0.5
+color = Color(0.909804, 0.270588, 0.215686, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.2
+anim_speed_max = 2.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+collision_mask = 33
+motion_mode = 1
+script = ExtResource("1_56v20")
+
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phns2")
+}
+
+[node name="NightLightAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0ppnf")
+}
+
+[node name="HitRandomStreamPlayer" parent="." instance=ExtResource("2_tumac")]
+streams = Array[AudioStream]([ExtResource("3_b577q"), ExtResource("4_ts2fi"), ExtResource("5_c71pl"), ExtResource("6_6trcm"), ExtResource("7_ncnc1")])
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_xotrb")]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_onu2v")]
+max_speed = 90
+acceleration = 25.0
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_14gh0")]
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionAreaShape" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_3cc0k")
+
+[node name="PlayerShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_0a14d")
+
+[node name="PickupArea" type="Area2D" parent="."]
+position = Vector2(0, -2)
+collision_layer = 16
+collision_mask = 0
+
+[node name="PickupAreaShape" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_2muc3")
+
+[node name="OuterNightLight" type="PointLight2D" parent="."]
+position = Vector2(2.08165e-12, -7)
+color = Color(0.968627, 0.968627, 0, 1)
+energy = 0.0
+texture = ExtResource("11_8pr5u")
+texture_scale = 0.5
+
+[node name="MiddleNightLight" type="PointLight2D" parent="."]
+position = Vector2(2.08165e-12, -7)
+color = Color(0.968627, 0.968627, 0, 1)
+energy = 0.0
+texture = ExtResource("11_8pr5u")
+texture_scale = 0.25
+
+[node name="InnerNightLight" type="PointLight2D" parent="."]
+position = Vector2(2.08165e-12, -7)
+color = Color(0.968627, 0.968627, 0, 1)
+energy = 0.0
+texture = ExtResource("11_8pr5u")
+texture_scale = 0.05
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(20, 4)
+offset_left = -10.0
+offset_top = -24.0
+offset_right = 10.0
+offset_bottom = -20.0
+pivot_offset = Vector2(10, 2)
+theme_override_styles/background = SubResource("StyleBoxFlat_wrf1p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xpyye")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Image" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(2.08165e-12, -8)
+texture = ExtResource("1_xn5b6")
+
+[node name="HealthParticles" type="GPUParticles2D" parent="Visuals"]
+modulate = Color(0.909804, 0.270588, 0.215686, 1)
+self_modulate = Color(0.909804, 0.270588, 0.215686, 1)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_hwboj")
+texture = ExtResource("13_xao2c")
+one_shot = true
